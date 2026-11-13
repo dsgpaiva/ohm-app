@@ -92,7 +92,7 @@ fun StatusBar(modifier: Modifier) {
     val showWeather by Ohm.prefs.showWeather.state.collectAsState()
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     LaunchedEffect(Unit) { while (true) { now = System.currentTimeMillis(); delay(5_000) } }
-    val time = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(now))
+    val time = SimpleDateFormat("HH:mm", androidx.compose.ui.platform.LocalConfiguration.current.locales[0]).format(Date(now))
     val textCol = c.textPrimary
 
     Box(modifier.height(44.dp).background(Brush.verticalGradient(listOf(c.bg.copy(alpha = 0.85f), c.bg.copy(alpha = 0f))))) {
@@ -174,7 +174,7 @@ fun WeatherPopup(modifier: Modifier) {
                 Caption("UV ${w.daily.firstOrNull()?.uv?.roundToInt() ?: "-"}")
                 w.aqi?.let { Caption(tr("Air quality") + " $it") }
             }
-            Caption(tr("Open-Meteo · updated") + " " + SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(w.fetchedAt)), Modifier.padding(top = 8.dp), color = c.textHint)
+            Caption(tr("Open-Meteo · updated") + " " + SimpleDateFormat("HH:mm", androidx.compose.ui.platform.LocalConfiguration.current.locales[0]).format(Date(w.fetchedAt)), Modifier.padding(top = 8.dp), color = c.textHint)
         }
     }
 }

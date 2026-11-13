@@ -123,7 +123,6 @@ import org.maplibre.geojson.LineString
 import org.maplibre.geojson.Point
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 /** Shared handle so the floating controls can zoom the map. */
 object MapRef {
@@ -654,7 +653,7 @@ private fun EtaPanel(nav: NavState, modifier: Modifier) {
     val c = OhmTheme.colors
     val metric by Ohm.prefs.distanceKm.state.collectAsState()
     val ctx = LocalContext.current
-    val eta = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(System.currentTimeMillis() + (nav.remainingS * 1000).toLong()))
+    val eta = SimpleDateFormat("HH:mm", androidx.compose.ui.platform.LocalConfiguration.current.locales[0]).format(Date(System.currentTimeMillis() + (nav.remainingS * 1000).toLong()))
     OhmCard(modifier) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
