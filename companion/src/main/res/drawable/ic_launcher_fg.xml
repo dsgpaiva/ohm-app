@@ -1,0 +1,6 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- Omega-style mark: own design -->
+    <path android:fillColor="#2E78FF"
+        android:pathData="M54,30c-12.7,0 -22,9.3 -22,21.5c0,7.6 3.6,13.6 9,17.3v5.2h-8v4h13v-11.6c-5.4,-2.6 -9,-8 -9,-14.9c0,-9.8 7.4,-17.5 17,-17.5s17,7.7 17,17.5c0,6.9 -3.6,12.3 -9,14.9v11.6h13v-4h-8v-5.2c5.4,-3.7 9,-9.7 9,-17.3c0,-12.2 -9.3,-21.5 -22,-21.5z"/>
+</vector>
