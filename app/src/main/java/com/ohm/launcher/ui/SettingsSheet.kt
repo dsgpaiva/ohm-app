@@ -80,7 +80,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 private val Tabs = listOf(
     "Vehicle" to Icons.Rounded.DirectionsCar,
@@ -590,7 +589,7 @@ private fun TripCard(t: Trip, live: Boolean) {
     val kmh by Ohm.prefs.speedKmh.state.collectAsState()
     val cur by Ohm.prefs.currency.state.collectAsState()
     val fuelUnit by Ohm.prefs.fuelUnit.state.collectAsState()
-    val df = SimpleDateFormat("d MMM, HH:mm", Locale.getDefault())
+    val df = SimpleDateFormat("d MMM, HH:mm", androidx.compose.ui.platform.LocalConfiguration.current.locales[0])
     Panel {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(if (live) tr("In progress") else df.format(Date(t.start)), style = OhmTheme.type.bodyStrong, color = c.textPrimary, modifier = Modifier.weight(1f))

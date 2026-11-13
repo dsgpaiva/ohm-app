@@ -127,8 +127,23 @@ by a small shim (`C:\ohm-build\dlltool-shim`) that forwards to the NDK's `llvm-d
 Open the folder in Android Studio and press Run, or:
 ```
 gradlew assembleRelease        # → app/… and companion/build/outputs/apk/release/
-gradlew :app:testDebugUnitTest :companion:testDebugUnitTest   # 22 unit tests
+gradlew :app:testDebugUnitTest :companion:testDebugUnitTest   # 24 unit tests
+gradlew lintDebug                # lint (errors fail the build)
 ```
+
+## CI
+GitHub Actions ([.github/workflows/android.yml](.github/workflows/android.yml)) runs unit tests, lint and builds debug + release
+APKs on every push to `main` and every pull request; APKs and reports are kept as workflow artifacts.
+Pushing a `v*` tag (e.g. `v0.6.2`) also publishes a GitHub Release with `Ohm-<version>.apk` and `OhmCompanion-<version>.apk`.
+
+Release signing uses repository secrets (tags fail without them, so a release is never debug-signed):
+
+| Secret | Value |
+|---|---|
+| `OHM_KEYSTORE_BASE64` | `base64 -i keystore/ohm-release.jks` |
+| `OHM_KEYSTORE_PASSWORD` | `storePassword` from `keystore.properties` |
+| `OHM_KEY_ALIAS` | `keyAlias` |
+| `OHM_KEY_PASSWORD` | `keyPassword` |
 
 ## Notes / limits of this demo
 - Online services (no keys, fair-use public servers): CARTO map tiles, Photon search, OSRM routing, Overpass (categories, speed cameras), Open-Meteo weather. Offline, demo routes fall back to a straight line.
